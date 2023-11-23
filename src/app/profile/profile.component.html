@@ -1,0 +1,83 @@
+<div class="profile-bg container-fluid p-2">
+  <div class="container rounded bg-white mb-1 profile">
+    <div class="row ">
+      <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          <img class="rounded-circle mt-5" alt=""
+               width="150px"
+               src="{{this.avatar}}">
+          <span class="font-weight-bold">{{this.originalUserInfo?.hoTen}}</span>
+          <span class="text-black-50">{{this.userInfo?.soDienThoai}}</span>
+          <div class="switch">
+            <div class="switch__2">
+              <input id="switch-2" type="checkbox" checked="checked">
+              <label for="switch-2"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-right">Chỉnh sửa thông tin cá nhân</h4>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Họ và tên</label>
+              <input type="text" class="form-control"
+                     [disabled]="!isSave"
+                     [(ngModel)]="userInfo.hoTen"
+                     placeholder="first name">
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Ngày sinh</label>
+              <input type="date" class="form-control"
+                     [disabled]="!isSave"
+                      [(ngModel)]="userInfo.ngaySinh"
+                     [ngModel]="ngaySinh | date:'yyyy-MM-dd'">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <label class="labels">Số điện thoại</label>
+              <input type="text" class="form-control"
+                     placeholder="enter phone number"
+                     readonly
+                     value="{{this.userInfo?.soDienThoai}}">
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Địa chỉ</label>
+              <input type="text" class="form-control"
+                     placeholder="enter address line 1"
+                     [disabled]="!isSave"
+                     [(ngModel)]="userInfo.diaChi"
+                     value="{{this.userInfo?.diaChi}}">
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Mật khẩu</label>
+              <div class="input-group">
+                <input type="{{this.showPassword? 'text':'password'}}" class="form-control"
+                       placeholder="Nhập mật khẩu"
+                       [disabled]="!isSave"
+                       [(ngModel)]="userInfo.matKhau"
+                       name="matKhau">
+                <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+                  <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'"></i>
+                </button>
+              </div>
+            </div>
+            <div class="mt-5 text-center">
+              <button *ngIf="!isSave" (click)="edit()" class="btn btn-primary profile-button" type="button">Chỉnh sửa
+                thông tin cá nhân
+              </button>
+              <button *ngIf="isSave" (click)="save()" class="btn btn-primary profile-button" type="button">Lưu
+              </button>
+              <button *ngIf="isSave" (click)="cancel()" class="btn btn-outline-primary ms-3" type="button">Hủy
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
